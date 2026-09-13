@@ -8,33 +8,42 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.edu.ifsp.scl.prdm.sc3029531.stringconcatenator.ui.theme.StringConcatenatorTheme
 
 @Composable
 fun AddWordScreen(
-    modifier: Modifier
+    modifier: Modifier,
+    textReceived: String,
+    onConcatenate: (String) -> Unit
 ) {
+    var textReceived by remember { mutableStateOf(value = textReceived) }
+    var textToSend by remember { mutableStateOf(value = "") }
+
     Column(
         modifier = Modifier.fillMaxWidth(),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "String no estado atual"
+            text = textReceived
         )
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = "texto estático",
+            value = textToSend,
             label = {Text(text = "Text to send")},
-            onValueChange = {}
+            onValueChange = {textToSend = it}
         )
 
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-
+                onConcatenate(textToSend)
             }
         ) {
             Text(text = "Concatenar")
@@ -60,7 +69,9 @@ fun AddWordScreenPreview() {
     StringConcatenatorTheme {
         Surface {
             AddWordScreen(
-                modifier = Modifier
+                modifier = Modifier,
+                textReceived = "textReceived",
+                onConcatenate = {}
             )
         }
     }

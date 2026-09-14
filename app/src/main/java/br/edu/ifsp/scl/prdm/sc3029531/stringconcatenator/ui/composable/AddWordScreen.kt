@@ -20,7 +20,7 @@ import br.edu.ifsp.scl.prdm.sc3029531.stringconcatenator.ui.theme.StringConcaten
 fun AddWordScreen(
     modifier: Modifier,
     textReceived: String,
-    onConcatenate: (String) -> Unit
+    onConcatenateClick: (String) -> Unit
 ) {
     var textReceived by remember { mutableStateOf(value = textReceived) }
     var textToSend by remember { mutableStateOf(value = "") }
@@ -30,7 +30,7 @@ fun AddWordScreen(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = textReceived
+            text = textReceived //valor recebido da HomeScreen
         )
 
         OutlinedTextField(
@@ -43,7 +43,7 @@ fun AddWordScreen(
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                onConcatenate(textToSend)
+                onConcatenateClick(textToSend)
             }
         ) {
             Text(text = "Concatenar")
@@ -71,7 +71,7 @@ fun AddWordScreenPreview() {
             AddWordScreen(
                 modifier = Modifier,
                 textReceived = "textReceived",
-                onConcatenate = {}
+                onConcatenateClick = {}
             )
         }
     }

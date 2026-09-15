@@ -22,6 +22,7 @@ fun HomeScreen(modifier: Modifier, textToShow: String = "", textToConcatenate: S
     var textToShow by remember { mutableStateOf(value = textToShow) }
     var textToConcatenate by remember { mutableStateOf(value = textToConcatenate) }
 
+    textToShow += " "
     textToShow += textToConcatenate
 
     Column(

@@ -17,12 +17,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.edu.ifsp.scl.prdm.sc3029531.stringconcatenator.ui.theme.StringConcatenatorTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier, textToShow: String = "", textToConcatenate: String = "", onAddWordClick: (String) -> Unit) {
+fun HomeScreen(modifier: Modifier, textToShow: String = "", textToConcatenate: String = "", onAddWordClick: (String) -> Unit, onResetClick: () -> Unit) {
 
     var textToShow by remember { mutableStateOf(value = textToShow) }
-    var textToConcatenate by remember { mutableStateOf(value = textToConcatenate) }
 
-    textToShow += textToConcatenate
+    if (textToConcatenate != "") {
+        textToShow += " "
+        textToShow += textToConcatenate
+    }
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -44,6 +46,8 @@ fun HomeScreen(modifier: Modifier, textToShow: String = "", textToConcatenate: S
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
+                onResetClick()
+                textToShow = ""
 
             }
         ) {
@@ -74,7 +78,8 @@ fun HomeScreenPreview() {
                 modifier = Modifier,
                 textToShow = "Texto a ser mostrado",
                 textToConcatenate = "Texto a ser concatenado",
-                onAddWordClick = {}
+                onAddWordClick = {},
+                onResetClick = {}
             )
         }
     }

@@ -26,7 +26,7 @@ fun AddWordScreen(
     var textToSend by remember { mutableStateOf(value = "") }
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
